@@ -1,0 +1,60 @@
+name: Release Richer to PyPI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  precompile:
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13', '3.14']
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install jaclang
+        run: pip install jaclang
+
+      - name: Precompile bytecode
+        run: jac tool build richer/
+
+      - name: Upload precompiled artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: precompiled-richer-${{ matrix.python-version }}
+          path: richer/_precompiled/
+
+  release:
+    needs: precompile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Download precompiled artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: richer/_precompiled/
+          pattern: precompiled-richer-*
+          merge-multiple: true
+
+      - name: Install build tools
+        run: pip install twine
+
+      - name: Build and publish package
+        run: |
+          jac bundle
+          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}

@@ -1,18 +1,18 @@
-# Jac Super
+# Richer
 
 Enhanced console output plugin for Jac CLI with Rich formatting.
 
 ## Installation
 
 ```bash
-pip install jac-super
+pip install richer
 ```
 
 Once installed, the plugin automatically registers and enhances all Jac CLI command output.
 
 ## Usage
 
-No configuration required. After installation, jac-super automatically enhances output for all Jac commands:
+No configuration required. After installation, richer automatically enhances output for all Jac commands:
 
 - `jac create` - Enhanced project creation messages
 - `jac start` - Server startup and status messages

@@ -1,4 +1,4 @@
-"""Rich-enhanced console implementation for jac-super.
+"""Rich-enhanced console implementation for richer.
 
 This module provides a Rich-based implementation of JacConsole that
 inherits from the base console and overrides methods to use Rich
@@ -14,7 +14,7 @@ import from rich.theme { Theme }
 import from jaclang.cli.console { JacConsole as BaseJacConsole }
 
 """Rich-enhanced console that extends base JacConsole."""
-obj JacSuperConsole(BaseJacConsole) {
+obj RicherConsole(BaseJacConsole) {
     with entry {
         JAC_THEME = Theme(
             {
