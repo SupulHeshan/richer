@@ -1,4 +1,4 @@
-name: Release Richer to PyPI
+name: Release Jricher to PyPI
 
 on:
   workflow_dispatch:

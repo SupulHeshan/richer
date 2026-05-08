@@ -1,5 +1,5 @@
 [project]
-name = "richer"
+name = "jricher"
 version = "0.1.11"
 description = "Enhanced console output for Jac CLI with Rich formatting"
 authors = [
