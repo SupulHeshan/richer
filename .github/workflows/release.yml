@@ -52,7 +52,7 @@ jobs:
           merge-multiple: true
 
       - name: Install build tools
-        run: pip install twine
+        run: pip install jaclang twine
 
       - name: Build and publish package
         run: |
