@@ -16,8 +16,14 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install build tools
-        run: pip install jaclang twine
+      - name: Install jaclang from source
+        run: |
+          git clone https://github.com/jaseci-labs/jaseci.git
+          cd jaseci/jac
+          pip install .
+
+      - name: Install twine
+        run: pip install twine
 
       - name: Build and publish package
         run: |
